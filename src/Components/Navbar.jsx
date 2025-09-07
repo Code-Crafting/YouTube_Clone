@@ -8,7 +8,7 @@ import userProfile from "../assets/user_profile.jpg";
 
 function Navbar() {
   return (
-    <div className="fixed w-full">
+    <div className="fixed w-full z-1 bg-white">
       <div className=" flex justify-between items-center py-4 px-8 shadow-nav">
         <div className="flex gap-4">
           <img

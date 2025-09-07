@@ -14,8 +14,8 @@ import megan from "../assets/megan.png";
 import cameron from "../assets/cameron.png";
 import jack from "../assets/jack.png";
 
-function Aside() {
-  const category = [
+function Aside({ setId }) {
+  const section = [
     { name: "Home", img: home },
     { name: "Gaming", img: gaming },
     { name: "Automobiles", img: automoniles },
@@ -34,15 +34,27 @@ function Aside() {
     { name: "5-Minute Crafts", img: megan },
     { name: "Nas Daily", img: cameron },
   ];
+
+  const category = [0, 20, 2, 17, 24, 28, 10, 22, 25];
   return (
-    <div className="w-max pt-24 pb-4 px-8 flex justify-center flex-col gap-4">
-      {category.map((el, i) => (
-        <div className="flex gap-4 items-center" key={i}>
-          <img src={el.img} alt="name" className="w-[20px] h-[20px]" />
-          <p>{el.name}</p>
+    <div className="w-[200px] flex pt-24 pb-4 flex-col gap-4">
+      {section.map((el, i) => (
+        <div className="flex gap-4 items-center" key={i} id={category[i]}>
+          <img
+            src={el.img}
+            alt="name"
+            className="w-[20px] h-[20px] hover:cursor-pointer"
+            onClick={() => setId(category[i])}
+          />
+          <p
+            onClick={() => setId(category[i])}
+            className="hover:cursor-pointer text-gray-600"
+          >
+            {el.name}
+          </p>
         </div>
       ))}
-      <hr />
+      <hr className="text-gray-600" />
 
       <p className="text-gray-600 tracking-wide font-medium">SUBSCRIBED</p>
 
@@ -54,7 +66,7 @@ function Aside() {
               alt="name"
               className="w-[24px] h-[24px] rounded-full"
             />
-            <p>{el.name}</p>
+            <p className="hover:cursor-pointer text-gray-600">{el.name}</p>
           </div>
         ))}
       </div>
