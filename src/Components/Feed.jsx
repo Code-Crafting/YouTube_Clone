@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { apiKey } from "../data";
+import FeedShrimmer from "./Shrimmer/FeedShrimmer";
 
 function Feed({ categoryId }) {
   const [data, setData] = useState([]);
@@ -45,44 +46,58 @@ function Feed({ categoryId }) {
 
   return (
     <div className="bg-gray-100 w-full h-dvh flex flex-wrap pt-24 pb-4 pl-4  gap-4  overflow-y-scroll no-scrollbar overscroll-auto">
-      {data.map((el, i) => {
-        // console.log(el);
-        const {
-          snippet: {
-            channelTitle,
-            title,
-            publishedAt,
-            thumbnails: {
-              high: { url },
+      {data.length ? (
+        data.map((el, i) => {
+          // console.log(el);
+          const {
+            snippet: {
+              channelTitle,
+              title,
+              publishedAt,
+              thumbnails: {
+                high: { url },
+              },
             },
-          },
-          statistics: { viewCount },
-          id,
-        } = el;
+            statistics: { viewCount },
+            id,
+          } = el;
 
-        return (
-          <div className="w-2xs" key={id}>
-            <div className="h-[200px] overflow-hidden rounded-sm">
-              <img
-                src={url}
-                alt="thumbnails"
-                className="w-full h-full hover:cursor-pointer"
-              />
-            </div>
-            <div className="flex flex-col items-between mt-4 gap-1">
-              <h1 className="font-bold">{title}</h1>
-              <p className="font-medium tracking-wide">{channelTitle}</p>
-              <div className="flex gap-4">
-                <p>{views(viewCount)} views</p>
-                <div className="flex items-center">
-                  <div className="w-[6px] h-[6px] bg-black rounded-full"></div>
+          return (
+            <div className="w-2xs" key={id}>
+              <div className="h-[200px] overflow-hidden rounded-sm">
+                <img
+                  src={url}
+                  alt="thumbnails"
+                  className="w-full h-full hover:cursor-pointer"
+                />
+              </div>
+              <div className="flex flex-col items-between mt-4 gap-1">
+                <h1 className="font-bold">{title}</h1>
+                <p className="font-medium tracking-wide">{channelTitle}</p>
+                <div className="flex gap-4">
+                  <p>{views(viewCount)} views</p>
+                  <div className="flex items-center">
+                    <div className="w-[6px] h-[6px] bg-black rounded-full"></div>
+                  </div>
+                  <p>{date(publishedAt)}</p>
                 </div>
-                <p>{date(publishedAt)}</p>
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })
+      ) : (
+        <>
+          <FeedShrimmer />
+          <FeedShrimmer />
+          <FeedShrimmer />
+          <FeedShrimmer />
+          <FeedShrimmer />
+          <FeedShrimmer />
+          <FeedShrimmer />
+          <FeedShrimmer />
+          <FeedShrimmer />
+        </>
+      )}
     </div>
   );
 }

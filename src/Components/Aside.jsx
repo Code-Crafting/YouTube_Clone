@@ -36,6 +36,11 @@ function Aside({ setId }) {
   ];
 
   const category = [0, 20, 2, 17, 24, 28, 10, 22, 25];
+
+  const active = (e) => {
+    e.target.classList.add("active");
+  };
+
   return (
     <div className="w-[200px] flex pt-24 pb-4 flex-col gap-4">
       {section.map((el, i) => (
@@ -44,7 +49,10 @@ function Aside({ setId }) {
             src={el.img}
             alt="name"
             className="w-[20px] h-[20px] hover:cursor-pointer"
-            onClick={() => setId(category[i])}
+            onClick={(e) => {
+              setId(category[i]);
+              // active(e);
+            }}
           />
           <p
             onClick={() => setId(category[i])}
