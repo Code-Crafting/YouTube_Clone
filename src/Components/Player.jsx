@@ -5,19 +5,20 @@ import dislike from "../assets/dislike.png";
 import like from "../assets/like.png";
 import share from "../assets/share.png";
 import save from "../assets/save.png";
-import jack from "../assets/jack.png";
-import user from "../assets/user_profile.jpg";
+import { formatDistance, subDays } from "date-fns";
 
 function Player() {
   const { id } = useParams();
 
   const [videoDetails, setVideoDetails] = useState(null);
   const [channelDetails, setChannelDetails] = useState(null);
+  const [commentsDetails, setCommentDetails] = useState(null);
 
-  // console.log(videoDetails.snippet.channelId);
+  console.log(commentsDetails);
 
-  // getting video details
   useEffect(() => {
+    // getting video details
+
     fetch(
       `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=${
         import.meta.env.VITE_API_KEY
@@ -25,8 +26,18 @@ function Player() {
     )
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         setVideoDetails(res.items[0]);
+      });
+
+    // getting comment details
+    fetch(
+      `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2C%20replies&maxResults=50&videoId=${id}&key=${
+        import.meta.env.VITE_API_KEY
+      }`
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setCommentDetails(res.items);
       });
   }, []);
 
@@ -62,7 +73,7 @@ function Player() {
             </div>
 
             {videoDetails ? (
-              <div className="flex flex-col items-between mt-4 gap-4 w-[80%]">
+              <div className="flex flex-col items-between mt-4 gap-4">
                 <h1 className="text-2xl font-bold">
                   {videoDetails.snippet.title}
                 </h1>
@@ -116,11 +127,16 @@ function Player() {
 
             <div className="flex items-center justify-between mt-4">
               <div className="flex gap-3 items-center">
-                <img
-                  src={jack}
-                  alt="youtuber pic"
-                  className="w-[48px] h-[48px] rounded-full "
-                />
+                {channelDetails ? (
+                  <img
+                    src={channelDetails.snippet.thumbnails.high.url}
+                    alt="youtuber pic"
+                    className="w-[48px] h-[48px] rounded-full "
+                  />
+                ) : (
+                  <div className="w-[48px] h-[48px] rounded-full bg-gray-500"></div>
+                )}
+
                 <div>
                   <h1 className="font-bold text-lg">
                     {videoDetails ? videoDetails.snippet.channelTitle : ""}
@@ -154,35 +170,67 @@ function Player() {
                   )}{" "}
                   Commments
                 </h1>
-                <div className="flex items-start mt-4 gap-4">
-                  <img
-                    src={user}
-                    alt="user"
-                    className="w-[32px] rounded-full"
-                  />
-                  <div>
-                    <h1>Name</h1>
-                    <p>Comments.....</p>
-                    <div className="flex gap-4">
-                      <div className="flex items-center gap-2">
-                        <img
-                          src={like}
-                          alt="like"
-                          className="w-[16px] h-[16px]"
-                        />
-                        <p></p>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <img
-                          src={dislike}
-                          alt="dislike"
-                          className="w-[16px] h-[16px]"
-                        />
-                        {/* <p></p> */}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
+                {commentsDetails
+                  ? commentsDetails.map((el, i) => {
+                      return (
+                        <div className="flex items-start my-4 gap-4" key={i}>
+                          <img
+                            src={
+                              el.snippet.topLevelComment.snippet
+                                .authorProfileImageUrl
+                            }
+                            alt="user"
+                            className="w-[32px] rounded-full"
+                          />
+                          <div className="flex flex-col gap-2">
+                            <h1 className="font-medium">
+                              {
+                                el.snippet.topLevelComment.snippet
+                                  .authorDisplayName
+                              }{" "}
+                              {/* <span className="pl-2 font-normal">
+                                {formatDistance(
+                                  subDays(
+                                    new Date(),
+                                    el.snippet.topLevelComment.snippet.publishedAt.getDate()
+                                  ),
+                                  el.snippet.topLevelComment.snippet
+                                    .publishedAt,
+                                  { addSuffix: true }
+                                )}
+                              </span> */}
+                            </h1>
+                            <p>
+                              {el.snippet.topLevelComment.snippet.textOriginal}
+                            </p>
+                            <div className="flex gap-4">
+                              <div className="flex items-center gap-2">
+                                <img
+                                  src={like}
+                                  alt="like"
+                                  className="w-[16px] h-[16px]"
+                                />
+                                <p>
+                                  {views(
+                                    el.snippet.topLevelComment.snippet.likeCount
+                                  )}
+                                </p>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <img
+                                  src={dislike}
+                                  alt="dislike"
+                                  className="w-[16px] h-[16px]"
+                                />
+                                {/* <p></p> */}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })
+                  : ""}
               </div>
             </div>
           </div>
