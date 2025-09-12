@@ -5,6 +5,7 @@ import upload from "../assets/upload.png";
 import notification from "../assets/notification.png";
 import more from "../assets/more.png";
 import userProfile from "../assets/user_profile.jpg";
+import { Link } from "react-router";
 
 function Navbar() {
   return (
@@ -16,11 +17,13 @@ function Navbar() {
             alt="menu"
             className="w-[20px] h-[16px] hover:cursor-pointer"
           />
-          <img
-            src={logo}
-            alt="logo"
-            className="w-[96px] hover:cursor-pointer"
-          />
+          <Link to="/">
+            <img
+              src={logo}
+              alt="logo"
+              className="w-[96px] hover:cursor-pointer"
+            />
+          </Link>
         </div>
 
         <div className="flex items-center gap-2 w-sm border-gray-600 border rounded-2xl px-4 h-[32px]">

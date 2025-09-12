@@ -1,20 +1,16 @@
-import { useState } from "react";
-import Aside from "./Components/Aside";
-import Feed from "./Components/Feed";
+import { Route, Routes } from "react-router";
+import Home from "./Components/Home";
 import Navbar from "./Components/Navbar";
+import Player from "./Components/Player";
 
 function App() {
-  const [id, setId] = useState(0);
-  console.log(id);
   return (
     <>
       <Navbar />
-      <div className="relative">
-        <div className="absolute top-0 left-0 flex pl-8 gap-4 z-0">
-          <Aside setId={setId} />
-          <Feed categoryId={id} />
-        </div>
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/player/:id" element={<Player />} />
+      </Routes>
     </>
   );
 }
