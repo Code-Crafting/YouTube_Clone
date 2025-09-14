@@ -15,7 +15,6 @@ function Feed({ categoryId }) {
       .then((res) => res.json())
       .then((data) => {
         setData(data.items);
-        console.log(data);
       });
   }, [categoryId]);
 
@@ -38,7 +37,11 @@ function Feed({ categoryId }) {
           } = el;
 
           return (
-            <Link to={`/player/${id}`} className="w-2xs" key={id}>
+            <Link
+              to={`/player/${id}/${el.snippet.categoryId}`}
+              className="w-2xs"
+              key={id}
+            >
               <div className="h-[200px] overflow-hidden rounded-sm">
                 <img
                   src={url}

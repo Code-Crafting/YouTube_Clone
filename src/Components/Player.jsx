@@ -5,20 +5,23 @@ import dislike from "../assets/dislike.png";
 import like from "../assets/like.png";
 import share from "../assets/share.png";
 import save from "../assets/save.png";
+import user from "../assets/user_profile.jpg";
+import comment from "../assets/comment.svg";
 import { formatDistance, subDays } from "date-fns";
+import VideoReview from "./VideoReview";
+import CommentSec from "./CommentSec";
+import PlayList from "./PlayLIst";
 
 function Player() {
-  const { id } = useParams();
+  const { id, categoryId } = useParams();
 
   const [videoDetails, setVideoDetails] = useState(null);
   const [channelDetails, setChannelDetails] = useState(null);
   const [commentsDetails, setCommentDetails] = useState(null);
-
-  console.log(commentsDetails);
+  const [commentOn, setCommentOn] = useState(false);
 
   useEffect(() => {
     // getting video details
-
     fetch(
       `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=${
         import.meta.env.VITE_API_KEY
@@ -39,8 +42,9 @@ function Player() {
       .then((res) => {
         setCommentDetails(res.items);
       });
-  }, []);
+  }, [id]);
 
+  // getting channel details
   useEffect(() => {
     if (videoDetails) {
       fetch(
@@ -59,8 +63,8 @@ function Player() {
   return (
     <div className="relative">
       <div className="absolute w-full top-0 left-0 pl-8 z-0">
-        <div className="max-w-[1536px] mx-auto h-dvh pt-24 flex gap-4 overflow-y-scroll no-scrollbar overscroll-auto">
-          <div className="w-[70%]">
+        <div className="max-w-[1536px] mx-auto h-dvh pt-24 flex gap-4 ">
+          <div className="w-[60%] overflow-y-scroll no-scrollbar overscroll-auto">
             <div className="w-full h-[514px] overflow-hidden rounded-xl ">
               <iframe
                 src={`https://www.youtube.com/embed/${id}`}
@@ -84,38 +88,25 @@ function Player() {
                   </p>
 
                   <div className="flex gap-4">
-                    <div className="flex items-center gap-2">
-                      <img
-                        src={like}
-                        alt="like"
-                        className="w-[20px] h-[20px]"
-                      />
-                      <p>{views(videoDetails.statistics.likeCount)}</p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <img
-                        src={dislike}
-                        alt="dislike"
-                        className="w-[20px] h-[20px]"
-                      />
-                      {/* <p></p> */}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <img
-                        src={share}
-                        alt="share"
-                        className="w-[20px] h-[20px]"
-                      />
-                      <p>Share</p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <img
-                        src={save}
-                        alt="save"
-                        className="w-[20px] h-[20px]"
-                      />
-                      <p>Save</p>
-                    </div>
+                    <VideoReview
+                      imgSrc={like}
+                      imgAlt="like"
+                      stats={views(videoDetails.statistics.likeCount)}
+                    />
+                    <VideoReview imgSrc={dislike} imgAlt="dislike" stats="0" />
+                    <VideoReview
+                      imgSrc={comment}
+                      imgAlt="comment"
+                      stats={views(
+                        videoDetails ? videoDetails.statistics.commentCount : 0
+                      )}
+                      onClick={() =>
+                        setCommentOn((prev) => (prev ? false : true))
+                      }
+                    />
+                    <VideoReview imgSrc={share} imgAlt="share" stats="Share" />
+
+                    <VideoReview imgSrc={save} imgAlt="save" stats="Save" />
                   </div>
                 </div>
               </div>
@@ -156,86 +147,27 @@ function Player() {
               </div>
             </div>
 
-            <div className="ml-14 mt-4">
+            <div className="ml-14 mt-4 pb-2">
               <div className="">
                 <p>
                   {videoDetails
-                    ? videoDetails.snippet.description.slice(0, 250)
+                    ? videoDetails.snippet.description.slice(0, 250) + "..."
                     : ""}
                 </p>
-                <hr className="my-2 text-gray-600 rounded-md" />
-                <h1>
-                  {views(
-                    videoDetails ? videoDetails.statistics.commentCount : 0
-                  )}{" "}
-                  Commments
-                </h1>
 
-                {commentsDetails
-                  ? commentsDetails.map((el, i) => {
-                      return (
-                        <div className="flex items-start my-4 gap-4" key={i}>
-                          <img
-                            src={
-                              el.snippet.topLevelComment.snippet
-                                .authorProfileImageUrl
-                            }
-                            alt="user"
-                            className="w-[32px] rounded-full"
-                          />
-                          <div className="flex flex-col gap-2">
-                            <h1 className="font-medium">
-                              {
-                                el.snippet.topLevelComment.snippet
-                                  .authorDisplayName
-                              }{" "}
-                              {/* <span className="pl-2 font-normal">
-                                {formatDistance(
-                                  subDays(
-                                    new Date(),
-                                    el.snippet.topLevelComment.snippet.publishedAt.getDate()
-                                  ),
-                                  el.snippet.topLevelComment.snippet
-                                    .publishedAt,
-                                  { addSuffix: true }
-                                )}
-                              </span> */}
-                            </h1>
-                            <p>
-                              {el.snippet.topLevelComment.snippet.textOriginal}
-                            </p>
-                            <div className="flex gap-4">
-                              <div className="flex items-center gap-2">
-                                <img
-                                  src={like}
-                                  alt="like"
-                                  className="w-[16px] h-[16px]"
-                                />
-                                <p>
-                                  {views(
-                                    el.snippet.topLevelComment.snippet.likeCount
-                                  )}
-                                </p>
-                              </div>
-                              <div className="flex items-center gap-2">
-                                <img
-                                  src={dislike}
-                                  alt="dislike"
-                                  className="w-[16px] h-[16px]"
-                                />
-                                {/* <p></p> */}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })
-                  : ""}
+                {commentOn ? (
+                  <CommentSec
+                    videoDetails={videoDetails}
+                    commentsDetails={commentsDetails}
+                  />
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </div>
 
-          <div className="w-[25%] border"></div>
+          <PlayList categoryId={categoryId} />
         </div>
       </div>
     </div>
