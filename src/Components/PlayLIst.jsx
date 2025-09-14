@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { views } from "../../functions";
+import PlayListShrimmer from "./Shrimmer/PlayListShrimmer";
 
 function PlayList({ categoryId }) {
   const [data, setData] = useState(null);
@@ -42,7 +43,7 @@ function PlayList({ categoryId }) {
               key={id}
               className="flex items-center gap-4"
             >
-              <div className="w-1/2 h-[150px]">
+              <div className="w-1/2 h-[150px] rounded-sm overflow-hidden">
                 <img
                   src={url}
                   alt="thumbnails"
@@ -60,7 +61,20 @@ function PlayList({ categoryId }) {
           );
         })
       ) : (
-        <></>
+        <>
+          <PlayListShrimmer />
+          <PlayListShrimmer />
+          <PlayListShrimmer />
+          <PlayListShrimmer />
+          <PlayListShrimmer />
+          <PlayListShrimmer />
+          <PlayListShrimmer />
+          <PlayListShrimmer />
+          <PlayListShrimmer />
+          <PlayListShrimmer />
+          <PlayListShrimmer />
+          <PlayListShrimmer />
+        </>
       )}
     </div>
   );
