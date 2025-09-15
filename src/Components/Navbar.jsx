@@ -6,8 +6,17 @@ import notification from "../assets/notification.png";
 import more from "../assets/more.png";
 import userProfile from "../assets/user_profile.jpg";
 import { Link } from "react-router";
+import { useEffect } from "react";
 
-function Navbar() {
+function Navbar({ setHideAsideText, setQuery, query, setDebouncedQuery }) {
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedQuery(query);
+    }, 500);
+
+    return () => clearTimeout(handler);
+  }, [query]);
+
   return (
     <div className="fixed w-full z-1 bg-white">
       <div className=" flex justify-between items-center py-4 px-8 shadow-nav">
@@ -16,6 +25,7 @@ function Navbar() {
             src={menu}
             alt="menu"
             className="w-[20px] h-[16px] hover:cursor-pointer"
+            onClick={() => setHideAsideText((perv) => (perv ? false : true))}
           />
           <Link to="/">
             <img
@@ -29,8 +39,10 @@ function Navbar() {
         <div className="flex items-center gap-2 w-sm border-gray-600 border rounded-2xl px-4 h-[32px]">
           <input
             type="text"
+            value={query}
             placeholder="Search"
             className="w-full outline-none hover:cursor-pointer"
+            onChange={(e) => setQuery(e.target.value)}
           />
           <img
             src={search}

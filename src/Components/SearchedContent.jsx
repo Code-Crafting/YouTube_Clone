@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import FeedShrimmer from "./Shrimmer/FeedShrimmer";
 import { Link } from "react-router";
-import { date, views } from "../../functions";
 
-function Feed({ categoryId }) {
+function SearchedContent({ debouncedQuery }) {
   const [data, setData] = useState(null);
-  console.log(categoryId);
 
   useEffect(() => {
     fetch(
-      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=US&videoCategoryId=${categoryId}&key=${
+      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${debouncedQuery}&key=${
         import.meta.env.VITE_API_KEY
       }`
     )
@@ -17,7 +15,7 @@ function Feed({ categoryId }) {
       .then((data) => {
         setData(data.items);
       });
-  }, [categoryId]);
+  }, [debouncedQuery]);
 
   return (
     <div className="bg-gray-100 w-full h-dvh flex flex-wrap pt-24 pb-4 pl-4  gap-4  overflow-y-scroll no-scrollbar overscroll-auto">
@@ -28,20 +26,19 @@ function Feed({ categoryId }) {
             snippet: {
               channelTitle,
               title,
-              publishedAt,
               thumbnails: {
                 high: { url },
               },
             },
-            statistics: { viewCount },
+            // statistics: { viewCount },
             id,
           } = el;
 
           return (
             <Link
-              to={`/player/${id}/${el.snippet.categoryId}`}
+              to={`/player/${el.id.videoId}/${0}`}
               className="w-2xs"
-              key={id}
+              key={i}
             >
               <div className="h-[200px] overflow-hidden rounded-sm">
                 <img
@@ -54,10 +51,9 @@ function Feed({ categoryId }) {
                 <h1 className="font-bold">{title}</h1>
                 <p className="font-medium tracking-wide">{channelTitle}</p>
                 <div className="flex gap-4">
-                  <p>
-                    {views(viewCount ? viewCount : 0)} views &bull;{" "}
-                    {date(publishedAt)}
-                  </p>
+                  {/* <p>
+                    {views(viewCount)} views &bull; {date(publishedAt)}
+                  </p> */}
                 </div>
               </div>
             </Link>
@@ -79,5 +75,4 @@ function Feed({ categoryId }) {
     </div>
   );
 }
-
-export default Feed;
+export default SearchedContent;
