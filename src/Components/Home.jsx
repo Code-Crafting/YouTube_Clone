@@ -23,7 +23,7 @@ function Home() {
       <div className="relative">
         <div className="absolute top-0 left-0 flex pl-8 gap-4 z-0">
           <Aside setId={setId} hideAsideText={hideAsideText} />
-          <div className="bg-gray-100 w-full h-dvh flex flex-wrap pt-24 pb-4 pl-4  gap-4  overflow-y-scroll no-scrollbar overscroll-auto">
+          <div className="848px:bg-gray-100 bg-white w-full h-dvh flex flex-wrap 848px:justify-start justify-center pt-24 pb-4 848px:pl-4 pl-0  gap-4  overflow-y-scroll no-scrollbar overscroll-auto">
             {!query ? (
               <Feed categoryId={id} />
             ) : (

@@ -19,35 +19,35 @@ function Navbar({ setHideAsideText, setQuery, query, setDebouncedQuery }) {
 
   return (
     <div className="fixed w-full z-1 bg-white">
-      <div className=" flex justify-between items-center py-4 px-8 shadow-nav">
+      <div className=" flex justify-between items-center sm:py-4 py-2 sm:px-8 px-4 shadow-nav">
         <div className="flex gap-4">
           <img
             src={menu}
             alt="menu"
-            className="w-[20px] h-[16px] hover:cursor-pointer"
+            className="w-[20px] h-[16px] hover:cursor-pointer 848px:block hidden"
             onClick={() => setHideAsideText((perv) => (perv ? false : true))}
           />
           <Link to="/">
             <img
               src={logo}
               alt="logo"
-              className="w-[96px] hover:cursor-pointer"
+              className="sm:w-[96px] 448px:w-[80px] w-[64px]  hover:cursor-pointer"
             />
           </Link>
         </div>
 
-        <div className="flex items-center gap-2 w-sm border-gray-600 border rounded-2xl px-4 h-[32px]">
+        <div className="flex items-center gap-2 sm:w-sm 448px:w-3xs w-[200px] sm:h-[32px] 448px:h-[28px] h-[24px] border-gray-600 border rounded-2xl px-4 ">
           <input
             type="text"
             value={query}
             placeholder="Search"
-            className="w-full outline-none hover:cursor-pointer"
+            className="w-full outline-none hover:cursor-pointer text-[12px] 448px:text-[16px]"
             onChange={(e) => setQuery(e.target.value)}
           />
           <img
             src={search}
             alt="search"
-            className="w-[20px] h-[20px] hover:cursor-pointer"
+            className="sm:w-[20px] sm:h-[20px] 448px:w-[16px] 448px:h-[16px] w-[12px] h-[12px] hover:cursor-pointer"
           />
         </div>
 
@@ -55,22 +55,22 @@ function Navbar({ setHideAsideText, setQuery, query, setDebouncedQuery }) {
           <img
             src={upload}
             alt="upload"
-            className="w-[25px] h-[25px] hover:cursor-pointer"
+            className="w-[25px] h-[25px] hover:cursor-pointer 848px:block hidden"
           />
           <img
             src={more}
             alt="more"
-            className="w-[25px] h-[25px] hover:cursor-pointer"
+            className="w-[25px] h-[25px] hover:cursor-pointer 848px:block hidden"
           />
           <img
             src={notification}
             alt="notification"
-            className="w-[25px] h-[25px] hover:cursor-pointer"
+            className="w-[25px] h-[25px] hover:cursor-pointer 848px:block hidden"
           />
           <img
             src={userProfile}
             alt="search"
-            className="rounded-full w-[25px] h-[25px] hover:cursor-pointer"
+            className="rounded-full 448px:w-[25px] 448px:h-[25px] w-[20px] h-[20px] hover:cursor-pointer"
           />
         </div>
       </div>

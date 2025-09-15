@@ -43,7 +43,7 @@ function Aside({ setId, hideAsideText }) {
 
   return (
     <div
-      className={`h-dvh flex pt-20 pb-4 flex-col gap-4 overflow-y-scroll no-scrollbar overscroll-auto`}
+      className={`h-dvh flex pt-20 pb-4 flex-col gap-4 overflow-y-scroll no-scrollbar overscroll-auto 848px:flex hidden`}
     >
       {section.map((el, i) => (
         <div className="flex gap-4 items-center" key={i} id={el.id}>

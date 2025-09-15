@@ -2,6 +2,9 @@
 
 @theme {
   --shadow-nav: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+  --breakpoint-848px: 53rem;
+  --breakpoint-448px: 28rem;
 }
 
 .no-scrollbar::-webkit-scrollbar {
