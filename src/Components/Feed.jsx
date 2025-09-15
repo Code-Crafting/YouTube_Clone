@@ -5,7 +5,6 @@ import { date, views } from "../../functions";
 
 function Feed({ categoryId }) {
   const [data, setData] = useState(null);
-  console.log(categoryId);
 
   useEffect(() => {
     fetch(
@@ -20,7 +19,7 @@ function Feed({ categoryId }) {
   }, [categoryId]);
 
   return (
-    <div className="bg-gray-100 w-full h-dvh flex flex-wrap pt-24 pb-4 pl-4  gap-4  overflow-y-scroll no-scrollbar overscroll-auto">
+    <>
       {data ? (
         data.map((el, i) => {
           // console.log(el);
@@ -76,7 +75,7 @@ function Feed({ categoryId }) {
           <FeedShrimmer />
         </>
       )}
-    </div>
+    </>
   );
 }
 

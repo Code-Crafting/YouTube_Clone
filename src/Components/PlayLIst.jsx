@@ -6,8 +6,6 @@ import PlayListShrimmer from "./Shrimmer/PlayListShrimmer";
 function PlayList({ categoryId }) {
   const [data, setData] = useState(null);
 
-  console.log(data);
-
   useEffect(() => {
     fetch(
       `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=25&regionCode=US&videoCategoryId=${categoryId}&key=${
@@ -54,7 +52,7 @@ function PlayList({ categoryId }) {
                 <h1 className="font-bold">{title}</h1>
                 <p className="font-medium tracking-wide">{channelTitle}</p>
                 <div className="flex gap-4">
-                  <p>{views(viewCount)} views</p>
+                  <p>{views(viewCount ? viewCount : 0)} views</p>
                 </div>
               </div>
             </Link>

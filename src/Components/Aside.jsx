@@ -13,9 +13,12 @@ import simon from "../assets/simon.png";
 import megan from "../assets/megan.png";
 import cameron from "../assets/cameron.png";
 import jack from "../assets/jack.png";
-import { NavLink } from "react-router";
+
+import { useState } from "react";
 
 function Aside({ setId, hideAsideText }) {
+  const [activeId, setActiveId] = useState(0);
+
   const section = [
     { name: "Home", img: home, id: 0 },
     { name: "Gaming", img: gaming, id: 20 },
@@ -38,35 +41,44 @@ function Aside({ setId, hideAsideText }) {
 
   // const category = [0, 20, 2, 17, 24, 28, 10, 22, 25];
 
-  const active = (e) => {
-    // e.target.classList.add("active");
-    console.log(e.target.parentElement.id === section[0].id);
-  };
-
   return (
     <div
-      className={`w-max h-dvh flex pt-20 pb-4 flex-col gap-4 overflow-y-scroll no-scrollbar overscroll-auto`}
+      className={`h-dvh flex pt-20 pb-4 flex-col gap-4 overflow-y-scroll no-scrollbar overscroll-auto`}
     >
       {section.map((el, i) => (
         <div className="flex gap-4 items-center" key={i} id={el.id}>
-          <img
-            src={el.img}
-            alt="name"
-            className="w-[20px] h-[20px] hover:cursor-pointer"
-            onClick={(e) => {
-              setId(el.id);
-              // active(e);
-            }}
-          />
+          <div className="w-[24px]">
+            <img
+              src={el.img}
+              alt="name"
+              className="w-[20px] h-[20px] hover:cursor-pointer"
+              onClick={(e) => {
+                setId(el.id);
+                setActiveId(el.id);
+              }}
+            />
+
+            {activeId === el.id ? (
+              <div className="h-[2px] bg-red-600 mt-1 rounded-sm "></div>
+            ) : (
+              ""
+            )}
+          </div>
+
           {hideAsideText ? (
             ""
           ) : (
-            <p
-              onClick={() => setId(el.id)}
-              className="hover:cursor-pointer text-gray-600"
-            >
-              {el.name}
-            </p>
+            <div className="w-[208px]">
+              <p
+                onClick={(e) => {
+                  setId(el.id);
+                  setActiveId(el.id);
+                }}
+                className="hover:cursor-pointer text-gray-600"
+              >
+                {el.name}
+              </p>
+            </div>
           )}
         </div>
       ))}

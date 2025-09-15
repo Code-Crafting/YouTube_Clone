@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import FeedShrimmer from "./Shrimmer/FeedShrimmer";
 import { Link } from "react-router";
 
-function SearchedContent({ debouncedQuery }) {
+function SearchedContent({ debouncedQuery, setQuery }) {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -18,10 +18,9 @@ function SearchedContent({ debouncedQuery }) {
   }, [debouncedQuery]);
 
   return (
-    <div className="bg-gray-100 w-full h-dvh flex flex-wrap pt-24 pb-4 pl-4  gap-4  overflow-y-scroll no-scrollbar overscroll-auto">
+    <>
       {data ? (
         data.map((el, i) => {
-          // console.log(el);
           const {
             snippet: {
               channelTitle,
@@ -30,7 +29,6 @@ function SearchedContent({ debouncedQuery }) {
                 high: { url },
               },
             },
-            // statistics: { viewCount },
             id,
           } = el;
 
@@ -39,6 +37,7 @@ function SearchedContent({ debouncedQuery }) {
               to={`/player/${el.id.videoId}/${0}`}
               className="w-2xs"
               key={i}
+              onClick={() => setQuery("")}
             >
               <div className="h-[200px] overflow-hidden rounded-sm">
                 <img
@@ -50,11 +49,7 @@ function SearchedContent({ debouncedQuery }) {
               <div className="flex flex-col items-between mt-4 gap-1">
                 <h1 className="font-bold">{title}</h1>
                 <p className="font-medium tracking-wide">{channelTitle}</p>
-                <div className="flex gap-4">
-                  {/* <p>
-                    {views(viewCount)} views &bull; {date(publishedAt)}
-                  </p> */}
-                </div>
+                <div className="flex gap-4"></div>
               </div>
             </Link>
           );
@@ -72,7 +67,7 @@ function SearchedContent({ debouncedQuery }) {
           <FeedShrimmer />
         </>
       )}
-    </div>
+    </>
   );
 }
 export default SearchedContent;
