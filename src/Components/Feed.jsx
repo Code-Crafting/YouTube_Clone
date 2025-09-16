@@ -39,7 +39,7 @@ function Feed({ categoryId }) {
           return (
             <Link
               to={`/player/${id}/${el.snippet.categoryId}`}
-              className="w-2xs"
+              className="848px:w-2xs 496px:w-[240px] w-[90%]"
               key={id}
             >
               <div className="h-[200px] overflow-hidden rounded-sm">
@@ -50,10 +50,14 @@ function Feed({ categoryId }) {
                 />
               </div>
               <div className="flex flex-col items-between mt-4 gap-1">
-                <h1 className="font-bold">{title}</h1>
-                <p className="font-medium tracking-wide">{channelTitle}</p>
+                <h1 className="font-bold 448px:text-[16px] text-[14px]">
+                  {title}
+                </h1>
+                <p className="font-medium tracking-wide 448px:text-[16px] text-[14px]">
+                  {channelTitle}
+                </p>
                 <div className="flex gap-4">
-                  <p>
+                  <p className="448px:text-[16px] text-[14px]">
                     {views(viewCount ? viewCount : 0)} views &bull;{" "}
                     {date(publishedAt)}
                   </p>

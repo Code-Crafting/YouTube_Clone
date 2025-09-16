@@ -1,6 +1,6 @@
 function FeedShrimmer() {
   return (
-    <div className="848px:w-2xs w-[240px]">
+    <div className="848px:w-2xs 496px:w-[240px] w-[90%]">
       <div className="848px:h-[200px] h-[150px] overflow-hidden rounded-sm bg-gray-400"></div>
       <div className="flex flex-col items-between mt-4 gap-1">
         <div className="h-[32px] bg-gray-400"></div>

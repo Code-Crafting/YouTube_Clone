@@ -6,7 +6,7 @@ function CommentSec({ videoDetails, commentsDetails }) {
   return (
     <>
       <hr className="my-2 text-gray-600 rounded-md" />
-      <h1>
+      <h1 className="448px:text-[16px] text-[14px]">
         {views(videoDetails ? videoDetails.statistics.commentCount : 0)}
         <span className="ml-2">Commments</span>
       </h1>
@@ -21,24 +21,15 @@ function CommentSec({ videoDetails, commentsDetails }) {
                     user
                   }
                   alt="user"
-                  className="w-[32px] rounded-full"
+                  className="448px:w-[32px] w-[26px] rounded-full"
                 />
                 <div className="flex flex-col gap-2">
-                  <h1 className="font-medium">
-                    {el.snippet.topLevelComment.snippet.authorDisplayName}{" "}
-                    {/* <span className="pl-2 font-normal">
-                                {formatDistance(
-                                  subDays(
-                                    new Date(),
-                                    el.snippet.topLevelComment.snippet.publishedAt.getDate()
-                                  ),
-                                  el.snippet.topLevelComment.snippet
-                                    .publishedAt,
-                                  { addSuffix: true }
-                                )}
-                              </span> */}
+                  <h1 className="font-medium 448px:text-[16px] text-[14px]">
+                    {el.snippet.topLevelComment.snippet.authorDisplayName}
                   </h1>
-                  <p>{el.snippet.topLevelComment.snippet.textOriginal}</p>
+                  <p className="448px:text-[16px] text-[14px]">
+                    {el.snippet.topLevelComment.snippet.textOriginal}
+                  </p>
                   <div className="flex gap-4">
                     <div className="flex items-center gap-2">
                       <img
@@ -46,7 +37,7 @@ function CommentSec({ videoDetails, commentsDetails }) {
                         alt="like"
                         className="w-[16px] h-[16px]"
                       />
-                      <p>
+                      <p className="448px:text-[16px] text-[12px]">
                         {views(el.snippet.topLevelComment.snippet.likeCount)}
                       </p>
                     </div>

@@ -5,6 +5,7 @@
 
   --breakpoint-848px: 53rem;
   --breakpoint-448px: 28rem;
+  --breakpoint-496px: 31rem;
 }
 
 .no-scrollbar::-webkit-scrollbar {
