@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import FeedShrimmer from "./Shrimmer/FeedShrimmer";
+import FeedShrimmer from "../Components/Shrimmer/FeedShrimmer";
 import { Link } from "react-router";
 import { date, views } from "../../functions";
 
