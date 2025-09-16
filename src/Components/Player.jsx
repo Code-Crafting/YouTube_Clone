@@ -70,6 +70,7 @@ function Player() {
         query={query}
         setQuery={setQuery}
         setDebouncedQuery={setDebouncedQuery}
+        isTrue={false}
       />
       <div className="relative">
         <div className="absolute w-full top-0 left-0 448px:pl-8 lg:pr-0 448px:pr-8 px-0 z-0">

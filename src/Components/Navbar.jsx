@@ -8,7 +8,13 @@ import userProfile from "../assets/user_profile.jpg";
 import { Link } from "react-router";
 import { useEffect } from "react";
 
-function Navbar({ setHideAsideText, setQuery, query, setDebouncedQuery }) {
+function Navbar({
+  setHideAsideText,
+  setQuery,
+  query,
+  setDebouncedQuery,
+  isTrue,
+}) {
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedQuery(query);
@@ -21,12 +27,17 @@ function Navbar({ setHideAsideText, setQuery, query, setDebouncedQuery }) {
     <div className="fixed w-full z-1 bg-white">
       <div className=" flex justify-between items-center sm:py-4 py-2 sm:px-8 px-4 shadow-nav">
         <div className="flex gap-4">
-          <img
-            src={menu}
-            alt="menu"
-            className="w-[20px] h-[16px] hover:cursor-pointer 848px:block hidden"
-            onClick={() => setHideAsideText((perv) => (perv ? false : true))}
-          />
+          {isTrue ? (
+            <img
+              src={menu}
+              alt="menu"
+              className="w-[20px] h-[16px] hover:cursor-pointer 848px:block hidden"
+              onClick={() => setHideAsideText((perv) => (perv ? false : true))}
+            />
+          ) : (
+            <></>
+          )}
+
           <Link to="/">
             <img
               src={logo}

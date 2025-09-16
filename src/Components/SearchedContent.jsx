@@ -5,6 +5,12 @@ import { Link } from "react-router";
 function SearchedContent({ debouncedQuery, setQuery }) {
   const [data, setData] = useState(null);
 
+  const pickRandomId = (arr) => {
+    const randomIndex = Math.floor(Math.random() * arr.length);
+
+    return arr[randomIndex];
+  };
+
   useEffect(() => {
     fetch(
       `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${debouncedQuery}&key=${
@@ -34,7 +40,9 @@ function SearchedContent({ debouncedQuery, setQuery }) {
 
           return (
             <Link
-              to={`/player/${el.id.videoId}/${0}`}
+              to={`/player/${el.id.videoId}/${pickRandomId([
+                0, 20, 2, 17, 24, 28, 10, 22, 25,
+              ])}`}
               key={i}
               className="sm:w-2xs 448px:w-[80%] w-full"
               onClick={() => setQuery("")}

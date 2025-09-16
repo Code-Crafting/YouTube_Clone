@@ -19,6 +19,7 @@ function Home() {
         query={query}
         setQuery={setQuery}
         setDebouncedQuery={setDebouncedQuery}
+        isTrue={true}
       />
       <div className="relative">
         <div className="absolute top-0 left-0 flex sm:pl-8 pl-2 pr-2 gap-4 z-0">
