@@ -7,10 +7,10 @@ import share from "../assets/share.png";
 import save from "../assets/save.png";
 import comment from "../assets/messages.png";
 import VideoReview from "./VideoReview";
-import CommentSec from "./CommentSec";
-import PlayList from "./PlayLIst";
-import Navbar from "./Navbar";
-import SearchedContent from "./SearchedContent";
+import CommentSec from "../Components/CommentSec";
+import PlayList from "../Components/Shrimmer/PlaylistShrimmer";
+import Navbar from "../Components/Navbar";
+import SearchedContent from "../Components/SearchedContent";
 import { SearchContext } from "../Contexts/SearchContext";
 
 function Player() {
