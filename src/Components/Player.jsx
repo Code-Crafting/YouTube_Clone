@@ -8,7 +8,7 @@ import save from "../assets/save.png";
 import comment from "../assets/messages.png";
 import VideoReview from "./VideoReview";
 import CommentSec from "../Components/CommentSec";
-import PlayList from "../Components/Shrimmer/PlaylistShrimmer";
+import PlayList from "../Components/PlayLIst";
 import Navbar from "../Components/Navbar";
 import SearchedContent from "../Components/SearchedContent";
 import { SearchContext } from "../Contexts/SearchContext";

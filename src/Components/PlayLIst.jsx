@@ -5,6 +5,7 @@ import PlayListShrimmer from "../Components/Shrimmer/PlaylistShrimmer";
 
 function PlayList({ categoryId }) {
   const [data, setData] = useState(null);
+  console.log(data);
 
   useEffect(() => {
     fetch(
