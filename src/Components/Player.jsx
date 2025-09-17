@@ -8,10 +8,10 @@ import save from "../assets/save.png";
 import comment from "../assets/messages.png";
 import VideoReview from "./VideoReview";
 import CommentSec from "../Components/CommentSec";
-import PlayList from "../Components/PlayList";
 import Navbar from "../Components/Navbar";
 import SearchedContent from "../Components/SearchedContent";
 import { SearchContext } from "../Contexts/SearchContext";
+import PlayList from "../Components/PlayLIst";
 
 function Player() {
   const { id, categoryId } = useParams();
