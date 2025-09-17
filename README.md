@@ -1,12 +1,21 @@
-# React + Vite
+# YouTube Clone  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A YouTube Clone built with **React.js** and **YouTube Data API** to fetch and display real-time video content. It includes video search, category filtering, and a responsive UI for a seamless user experience.  
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features  
 
-## Expanding the ESLint configuration
+- 🎥 **Real-time Video Data** – Fetch videos using the YouTube Data API  
+- 🔍 **Search Functionality** – Search videos by keywords  
+- 📂 **Category Filtering** – Browse videos by categories(Only for Desktop) 
+- 📱 **Responsive UI** – Optimized for all devices  
+- ⚡ **Fast and Interactive** – Smooth UI with React components  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ Tech Stack  
+
+- **Frontend:** React.js, JavaScript, TailwindCSS 
+- **API:** YouTube Data API v3  
+- **Deployment:** Vercel 
