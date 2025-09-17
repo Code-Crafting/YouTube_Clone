@@ -8,7 +8,7 @@ import save from "../assets/save.png";
 import comment from "../assets/messages.png";
 import VideoReview from "./VideoReview";
 import CommentSec from "../Components/CommentSec";
-import PlayList from "../Components/Shrimmer/PlaylistShrimmer";
+import PlayList from "../Components/PlayList";
 import Navbar from "../Components/Navbar";
 import SearchedContent from "../Components/SearchedContent";
 import { SearchContext } from "../Contexts/SearchContext";
@@ -75,7 +75,7 @@ function Player() {
       <div className="relative">
         <div className="absolute w-full top-0 left-0 448px:pl-8 lg:pr-0 448px:pr-8 px-0 z-0">
           {!query ? (
-            <div className="max-w-[1536px] mx-auto h-dvh sm:pt-24 pt-16 flex gap-4 lg:flex-row flex-col">
+            <div className="max-w-[1536px] mx-auto h-dvh sm:pt-24 pt-20 flex gap-4 lg:flex-row flex-col">
               <div className="lg:w-[60%] w-full lg:overflow-y-scroll no-scrollbar lg:overscroll-auto">
                 <div className="w-full sm:h-[514px] 448px:h-[350px] h-[250px] overflow-hidden 448px:rounded-xl ">
                   <iframe

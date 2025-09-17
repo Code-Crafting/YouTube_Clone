@@ -25,7 +25,7 @@ function Navbar({
 
   return (
     <div className="fixed w-full z-1 bg-white">
-      <div className=" flex justify-between items-center sm:py-4 py-2 sm:px-8 px-4 shadow-nav">
+      <div className=" flex justify-between items-center sm:py-4 py-3 sm:px-8 px-4 shadow-nav">
         <div className="flex gap-4">
           {isTrue ? (
             <img
@@ -42,12 +42,12 @@ function Navbar({
             <img
               src={logo}
               alt="logo"
-              className="sm:w-[96px] 448px:w-[80px] w-[64px]  hover:cursor-pointer"
+              className="sm:w-[96px] w-[80px]  hover:cursor-pointer"
             />
           </Link>
         </div>
 
-        <div className="flex items-center gap-2 sm:w-sm 448px:w-3xs w-[200px] sm:h-[32px] 448px:h-[28px] h-[24px] border-gray-600 border rounded-2xl px-4 ">
+        <div className="flex items-center gap-2 sm:w-sm 448px:w-3xs w-[180px] sm:h-[32px] h-[28px] border-gray-600 border rounded-2xl px-4 ">
           <input
             type="text"
             value={query}
@@ -80,8 +80,8 @@ function Navbar({
           />
           <img
             src={userProfile}
-            alt="search"
-            className="rounded-full 448px:w-[25px] 448px:h-[25px] w-[20px] h-[20px] hover:cursor-pointer"
+            alt="userProfile"
+            className="rounded-full w-[25px] h-[25px]  hover:cursor-pointer"
           />
         </div>
       </div>
